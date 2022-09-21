@@ -13,10 +13,11 @@ public class ContactServiceImpl implements ContactService{
 	
 //	fake list of contacts
 	List<Contact> listOfContacts = List.of(
-		new Contact(1, "ankit@gmail.com", "ankit", 1311),
-		new Contact(2, "rahul@gmail.com", "rahul", 1231),
-		new Contact(3, "aman@gmail.com", "aman", 1321),
-		new Contact(4, "ankitsaini@gmail.com", "ankit saini", 1311)
+		new Contact(1, "shubhangi@gmail.com", "Shubhangi", 1001),
+		new Contact(2, "devangi@gmail.com", "Devangi", 1002),
+		new Contact(3, "ankita@gmail.com", "Ankita", 1003),
+		new Contact(4,"snehal@gmail.com","Snehal",1004),
+		new Contact(5, "apurva@gmail.com", "Apurva", 1005)
 	);
 
 	@Override

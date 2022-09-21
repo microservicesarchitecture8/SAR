@@ -8,6 +8,11 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 @SpringBootApplication
 @EnableZuulProxy
 @EnableEurekaServer
+/**
+ * 
+ * @author shukotka
+ *
+ */
 public class SpringSecurityJwtApplication {
 
 	public static void main(String[] args) {

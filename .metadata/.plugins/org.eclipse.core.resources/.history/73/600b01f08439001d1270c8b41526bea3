@@ -1,0 +1,26 @@
+spring.application.name= api-gateway
+server.port= 9000
+spring.servlet.multipart.max-file-size= 1000MB
+spring.servlet.multipart.max-request-size= 1000MB
+zuul.host.connect-timeout-millis= 10000
+zuul.host.socket-timeout-millis= 10000
+
+# routing
+zuul.routes.user-service.path= /user/**
+zuul.routes.user-service.url = http://localhost:9003/user/
+zuul.routes.contact-service.path= /contact/user/**
+zuul.routes.contact-service.url = http://localhost:9002/contact/user/
+
+
+#eureka
+eureka.instance.instance-id= ${spring.application.name}:${spring.application.instance_id:${random.value}}
+eureka.client.register-with-eureka= false
+eureka.client.fetch-registry= false
+eureka.instance.prefer-ip-address= true
+eureka.client.serviceUrl.defaultZone=http://localhost:9000/eureka/
+
+#ssl
+server.ssl.key-alias= spring-https
+server.ssl.key-store-type= JKS
+server.ssl.key-store= classpath:sar.jks
+server.ssl.key-password= 123456

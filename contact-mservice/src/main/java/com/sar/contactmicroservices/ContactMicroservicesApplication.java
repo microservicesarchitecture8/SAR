@@ -5,7 +5,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @SpringBootApplication
-//@EnableEurekaClient
+
+/**
+ * 
+ * @author shukotka
+ *
+ */
 public class ContactMicroservicesApplication {
 
 	public static void main(String[] args) {
