@@ -8,10 +8,12 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.server.SecurityWebFilterChain;
 
 import com.springsecurity.filters.JwtRequestFilter;
 
@@ -23,7 +25,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	private JwtRequestFilter jwtRequestFilter;
-
+	
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(myUserDetailsService);
@@ -49,6 +51,17 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
+	}
+	
+	@Bean
+	SecurityWebFilterChain springWebFilterChain(ServerHttpSecurity http) throws Exception {
+		return http.httpBasic().and()
+				.csrf().disable()
+				.authorizeExchange().pathMatchers("/authenticate").permitAll().pathMatchers("/register").permitAll().
+				anyExchange().permitAll()
+				.and()
+				.build();
+		
 	}
 
 }

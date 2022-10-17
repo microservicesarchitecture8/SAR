@@ -11,5 +11,7 @@ import com.springsecurity.dto.RegistrationDto;
 public interface RegistrationService {
 	
 	public List<RegistrationDto> registerMicroservices(RegistrationDto registrationDto);
+	
+	public void refreshRoutes();
 
 }
