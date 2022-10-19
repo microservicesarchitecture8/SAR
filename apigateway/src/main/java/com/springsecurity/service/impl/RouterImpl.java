@@ -15,6 +15,10 @@ import com.springsecurity.utils.CommonUtils;
 
 import reactor.core.publisher.Flux;
 
+/**
+ * @author BGH58082
+ *
+ */
 @Service
 public class RouterImpl implements RouteLocator {
 	
