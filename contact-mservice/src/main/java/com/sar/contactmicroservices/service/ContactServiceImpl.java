@@ -21,8 +21,8 @@ public class ContactServiceImpl implements ContactService{
 	);
 
 	@Override
-	public List<Contact> getContactOfUser(int userId) {
-		return listOfContacts.stream().filter(contact -> contact.getUserId()==userId).collect(Collectors.toList());
+	public List<Contact> getContactOfUser(int contactId) {
+		return listOfContacts.stream().filter(contact -> contact.getUserId()==contactId).collect(Collectors.toList());
 	}
 
 }

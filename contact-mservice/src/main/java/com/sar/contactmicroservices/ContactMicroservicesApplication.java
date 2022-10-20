@@ -40,6 +40,9 @@ public class ContactMicroservicesApplication {
 	@Value("${discovery.service.url}")
 	private String registerURL;
 	
+	@Value("${discovery.service.contextPath}")
+	private String contextPath;
+	
 	@Bean
 	public static RestTemplate getRestTemplate() {
 		return new RestTemplate();
@@ -57,6 +60,7 @@ public class ContactMicroservicesApplication {
 		regDto.setServiceName(name);
 		regDto.setServiceUrl(URL + port);
 		regDto.setInstanceName(name);
+		regDto.setContextPath(contextPath);
 		getRestTemplate().postForEntity(registerURL, new HttpEntity<>(regDto, headers), String.class);
 	}
 
@@ -66,6 +70,5 @@ public class ContactMicroservicesApplication {
 			registerServiceWithGateway();
 		}
 	}
-
-
+	
 }

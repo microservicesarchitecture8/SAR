@@ -6,6 +6,6 @@ import com.sar.contactmicroservices.entity.Contact;
 
 public interface ContactService {
 	
-	List<Contact> getContactOfUser(int userId);
+	List<Contact> getContactOfUser(int contactId);
 
 }

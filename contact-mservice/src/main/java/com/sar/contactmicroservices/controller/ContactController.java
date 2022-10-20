@@ -17,9 +17,9 @@ public class ContactController {
 	@Autowired
 	private ContactService service;
 	
-	@RequestMapping("/user/{userId}")
-	public List<Contact> getContact(@PathVariable("userId") int userId){
-		return service.getContactOfUser(userId);
+	@RequestMapping("/{contactId}")
+	public List<Contact> getContact(@PathVariable("contactId") int contactId){
+		return service.getContactOfUser(contactId);
 	}
 
 }

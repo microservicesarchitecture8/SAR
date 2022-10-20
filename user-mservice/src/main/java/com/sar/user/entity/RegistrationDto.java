@@ -1,4 +1,4 @@
-package com.sar.contactmicroservices.entity;
+package com.sar.user.entity;
 
 /**
  * @author BGH58082
@@ -11,7 +11,6 @@ public class RegistrationDto {
 	private String servicePort;
 	private String instanceName;
 	private String contextPath;
-	
 	
 	public String getContextPath() {
 		return contextPath;
