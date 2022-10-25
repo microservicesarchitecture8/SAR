@@ -14,4 +14,5 @@ public interface RegistrationService {
 	
 	public void refreshRoutes();
 
+	public List<RegistrationDto> deRegisterMicroservices(String serviceName, String serviceUrl);
 }

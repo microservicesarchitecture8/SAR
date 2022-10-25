@@ -32,7 +32,6 @@ public class SpringSecurityJwtApplication {
 	
 	@Bean()
 	public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
-		//@formatter:off
 		return new RouterImpl(builder);
 	}
 	

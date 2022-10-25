@@ -1,6 +1,7 @@
 package com.springsecurity.service.impl;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,4 +39,20 @@ public class RegistrationServiceImpl implements RegistrationService {
 		return dtos;
 	}
 
+	@Override
+	public List<RegistrationDto> deRegisterMicroservices(String serviceName, String serviceUrl) {
+		List<RegistrationDto> dtos= CommonUtils.registrationMap.get(serviceName) == null ? new ArrayList<>() : 
+			CommonUtils.registrationMap.get(serviceName);
+		Iterator dtoList = dtos.iterator();
+		List<RegistrationDto> newDtos = new ArrayList<>();
+		while(dtoList.hasNext()) {
+			RegistrationDto dto = (RegistrationDto) dtoList.next();
+			if(!dto.getServiceUrl().equals(serviceUrl)) {
+				newDtos.add(dto);
+			}
+		}
+		CommonUtils.registrationMap.put(serviceName, newDtos);
+		return newDtos;
+	}
+	
 }
