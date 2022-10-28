@@ -52,6 +52,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 			}
 		}
 		CommonUtils.registrationMap.put(serviceName, newDtos);
+		refreshRoutes();
 		return newDtos;
 	}
 	
