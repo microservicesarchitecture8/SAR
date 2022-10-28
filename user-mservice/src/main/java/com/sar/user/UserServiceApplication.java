@@ -1,6 +1,7 @@
 package com.sar.user;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -8,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
@@ -40,6 +42,9 @@ public class UserServiceApplication {
 	@Value("${discovery.service.contextPath}")
 	private String contextPath;
 	
+	@Value("${discovery.service.deregisterurl}")
+	private String deRegisterURL;
+	
 	@Bean
 	public static RestTemplate getRestTemplate() {
 		return new RestTemplate();
@@ -68,4 +73,14 @@ public class UserServiceApplication {
 			registerServiceWithGateway();
 		}
 	}
+	
+	@PreDestroy 
+	public void destroy() { 
+		if(!StringUtils.isEmpty(enabled) && enabled.equals(TRUE)) {
+			HttpHeaders headers = new HttpHeaders();
+			headers.set(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE);
+			HttpEntity<?> entity = new HttpEntity<>(headers);
+			getRestTemplate().exchange(deRegisterURL, HttpMethod.DELETE,entity, String.class, name,	(URL + port));
+		}
+	} 
 }
